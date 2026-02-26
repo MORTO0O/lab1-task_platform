@@ -1,44 +1,54 @@
-# Лабораторная работа №1: Источники задач и контракты
+# Лабораторная работа №1  
+**Источники задач и контракты**
 
-**Вариант с полным использованием `typing.Protocol` + `@runtime_checkable`**
-
-## Тема
-Duck Typing, протоколы и контрактное программирование в Python
+**Тема:** Duck Typing, `typing.Protocol` и контрактное программирование
 
 ## Цель работы
-Освоить структурную типизацию через `Protocol`, реализовать runtime-проверку контрактов, создать расширяемую архитектуру без общего базового класса.
+Освоить структурную типизацию через `Protocol`, реализовать runtime-проверку контракта и создать расширяемую подсистему приёма задач **без общего базового класса**.
 
-## Что реализовано
-- Единый поведенческий контракт `TaskSource` (без наследования)
-- `@runtime_checkable` + `isinstance()` проверка
+## Реализованные возможности
+- Единый контракт `TaskSource` с помощью `typing.Protocol`
+- `@runtime_checkable` + проверка через `isinstance()`
 - Три независимых источника задач:
-  - `FileTaskSource` (из JSON)
-  - `GeneratorTaskSource` (программная генерация)
-  - `APITaskSource` (заглушка внешнего API)
-- Ленивая обработка через генераторы (`yield from`)
-- Полная типизация + 91% покрытие тестами
+  - `FileTaskSource` - загрузка из JSON
+  - `GeneratorTaskSource` - генерация задач в коде
+  - `APITaskSource` - заглушка внешнего API
+- Ленивая обработка задач (`yield from`)
+- Полная типизация и 91% покрытие тестами
 
-## Установка
-```powershell
-# 1. Клонируем
-git clone https://github.com/MORTO0O/lab1-task_platform.git
-cd task-platform-lab1
+## Структура проекта
 
-# 2. Создаём окружение
-python -m venv .venv
-.venv\Scripts\activate     # Windows
-
-# 3. Устанавливаем зависимости
-pip install -r requirements.txt
-
-# 4. (Опционально) включаем pre-commit
-pre-commit install
 ```
-## Запуск
-```powershell
-# Демонстрация
-python -m main
-
-# Тесты
-python -m pytest tests -q --cov=. --cov-report=term-missing
+task_platform/
+├── task.py                    # Модель Task + протокол TaskSource
+├── receiver.py                # TaskReceiver + runtime-проверка
+├── sources/
+│   ├── file_source.py
+│   ├── generator_source.py
+│   └── API_source.py
+├── main.py                    # Демонстрация работы
+├── tests/                     # Все тесты (pytest)
+├── tasks.json                 # Пример данных
+├── .gitignore
+├── requirements.txt
+├── .pre-commit-config.yaml
+└── README.md
 ```
+
+## Как запустить
+
+```powershell
+# 1. Переход в родительскую директорию
+cd C:\Users\Пользователь\PycharmProjects\frameworks
+
+# 2. Запуск демонстрации
+python -m task_platform.main
+
+# 3. Запуск тестов с покрытием
+python -m pytest task_platform/tests -q --cov=task_platform --cov-report=term-missing
+```
+## Чему научился
+- Использовать современный `Protocol` вместо ABC
+- Проводить runtime-проверку контрактов (`@runtime_checkable`)
+- Строить расширяемую архитектуру (Open-Closed Principle)
+- Писать ленивые генераторы и качественные тесты на **pytest** (91% покрытие)
