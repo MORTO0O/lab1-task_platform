@@ -1,0 +1,8 @@
+[
+  {"id": "file_001", "payload": {"from": "file"}},
+  {"id": "file_002", "payload": {"from": "file"}},
+  {"id": "file_003", "payload": {"from": "file"}},
+  {"id": "file_004", "payload": {"from": "file"}},
+  {"id": "file_005", "payload": {"from": "file"}},
+  {"id": "file_006", "payload": {"from": "file"}}
+]
