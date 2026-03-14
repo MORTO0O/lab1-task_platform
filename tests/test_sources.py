@@ -1,7 +1,7 @@
-from task_platform.sources.file_source import FileTaskSource
-from task_platform.sources.generator_source import GeneratorTaskSource
-from task_platform.sources.API_source import APITaskSource
-from task_platform.task import Task, TaskSource
+from src.sources.file_source import FileTaskSource
+from src.sources.generator_source import GeneratorTaskSource
+from src.sources.API_source import APITaskSource
+from src.task import Task, TaskSource
 
 
 def test_file_source(temp_task_file):

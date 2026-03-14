@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from task_platform.task import Task
+from src.task import Task
 
 
 @pytest.fixture

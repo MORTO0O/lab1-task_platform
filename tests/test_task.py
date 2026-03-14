@@ -1,6 +1,6 @@
 from collections.abc import Iterable
 
-from task_platform.task import Task, TaskSource
+from src.task import Task, TaskSource
 
 
 def test_task_dataclass():

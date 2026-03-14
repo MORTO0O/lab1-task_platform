@@ -1,9 +1,9 @@
 import pytest
 
-from task_platform.receiver import TaskReceiver
-from task_platform.sources.generator_source import GeneratorTaskSource
-from task_platform.sources.API_source import APITaskSource
-from task_platform.task import Task
+from src.receiver import TaskReceiver
+from src.sources.generator_source import GeneratorTaskSource
+from src.sources.API_source import APITaskSource
+from src.task import Task
 
 
 class InvalidSource:
