@@ -19,33 +19,31 @@
 ## Структура проекта
 
 ```
-task_platform/
+src/
 ├── task.py                    # Модель Task + протокол TaskSource
-├── receiver.py                # TaskReceiver + runtime-проверка
+├── receiver.py                # TaskReceiver с runtime-проверкой
 ├── sources/
 │   ├── file_source.py
 │   ├── generator_source.py
 │   └── API_source.py
-├── main.py                    # Демонстрация работы
-├── tests/                     # Все тесты (pytest)
-├── tasks.json                 # Пример данных
+├── main.py                    # Демонстрация
+├── tests/                     # Тесты на pytest
+├── tasks.json
+├── descriptors.py             # ← будет добавлен во 2-й лабе
+├── exceptions.py              # ← будет добавлен во 2-й лабе
 ├── .gitignore
 ├── requirements.txt
-├── .pre-commit-config.yaml
-└── README.md
+└── .pre-commit-config.yaml
 ```
 
-## Как запустить
+## Как запустить (независимо от названия папки)
 
 ```powershell
-# 1. Переход в родительскую директорию
-cd C:\Users\Пользователь\PycharmProjects\frameworks
+# Запуск демонстрации
+python -m src.main
 
-# 2. Запуск демонстрации
-python -m task_platform.main
-
-# 3. Запуск тестов с покрытием
-python -m pytest task_platform/tests -q --cov=task_platform --cov-report=term-missing
+# Запуск тестов с покрытием
+python -m pytest src/tests -q --cov=src --cov-report=term-missing
 ```
 ## Чему научился
 - Использовать современный `Protocol` вместо ABC
