@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 from typing import Any, Iterable, Protocol, runtime_checkable
 
-@dataclass(frozen=True) #frozen=True - immutable
+
 class Task:
-    id: str
-    payload: Any
+    def __init__(self, id: int, payload : Any, priority: int) -> None:
+        self.id = id
+        self.payload = payload
+        self.priority = priority
 
 @runtime_checkable
 class TaskSource(Protocol):
