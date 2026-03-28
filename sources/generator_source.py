@@ -1,5 +1,5 @@
+import random
 from typing import Iterable
-
 from ..task import Task
 
 class GeneratorTaskSource:
@@ -8,6 +8,8 @@ class GeneratorTaskSource:
 
     def get_tasks(self) -> Iterable[Task]:
         for i in range(self.count):
-            yield Task(id=f"gen_{i:04d}",
-                       payload={"type": "generated", "value": i * 10}
+            yield Task(
+                task_id=f"gen_{i:04d}", 
+                payload={"type": "generated", "value": i * 10},
+                priority=random.randint(1, 5) 
             )
