@@ -17,5 +17,6 @@ class FileTaskSource:
             yield Task(
                 task_id=str(item.get('task_id', item.get('id'))),
                 payload=item.get('payload', {}),
-                priority=int(item.get('priority', 1))
+                priority=int(item.get('priority', 1)),
+                description=item.get('description', 'No description provided')
             )

@@ -4,7 +4,7 @@
   {"task_id": "file_003", "payload": {"from": "file"}, "priority":  3},
   {"task_id": "file_004", "payload": {"from": "file"}, "priority":  4},
   {"task_id": "file_005", "payload": {"from": "file"}, "priority":  5},
-  {"task_id": "file_006", "payload": {"from": "file"}, "priority":  1},
+  {"task_id": "file_006", "payload": {"from": "file"}, "priority":  10},
   {"task_id": "file_007", "payload": {"from": "file"}, "priority":  2},
   {"task_id": "file_008", "payload": {"from": "file"}, "priority":  3},
   {"task_id": "file_009", "payload": {"from": "file"}, "priority":  5},

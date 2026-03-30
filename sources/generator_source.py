@@ -11,5 +11,6 @@ class GeneratorTaskSource:
             yield Task(
                 task_id=f"gen_{i:04d}", 
                 payload={"type": "generated", "value": i * 10},
-                priority=random.randint(1, 5) 
+                priority=random.randint(1, 5),
+                description = f"Auto-generated task number {i}"
             )

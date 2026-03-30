@@ -20,7 +20,7 @@ if __name__ == '__main__':
             task = next(tasks_stream)
             _ = task.access_log
 
-            print(f"OK: [ID: {task.id}] | Priority: {task.priority} | Status: {task.status}")
+            print(f"OK: [ID: {task.id}] | Priority: {task.priority} | Status: {task.status} | Description: {task.description} | Created at: {task.created_at}")
 
             if task.is_high_priority:
                 print(f"Внимание! Высокий приоритет у задачи {task.id}")
