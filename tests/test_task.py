@@ -1,25 +1,30 @@
-from collections.abc import Iterable
+import pytest
+from src.task import Task
+from src.exceptions import InvalidStatusError
 
-from src.task import Task, TaskSource
+def test_task_initialization():
+    task = Task(task_id="T1", payload="data", priority=3, status="ready")
+    assert task.id == "T1"
+    assert task.priority == 3
+    assert task.status == "ready"
 
+def test_task_id_is_readonly():
+    task = Task("T1", {}, 1)
+    with pytest.raises(AttributeError):
+        task.id = "new-id"
 
-def test_task_dataclass():
-    task = Task(id="test-123", payload={"user": "ivan"})
-    assert task.id == "test-123"
-    assert task.payload == {"user": "ivan"}
+def test_is_high_priority():
+    low_task = Task("T1", {}, 1)
+    high_task = Task("T2", {}, 5)
+    assert low_task.is_high_priority is False
+    assert high_task.is_high_priority is True
 
+def test_invalid_status_raises_error():
+    task = Task("T1", {}, 1)
+    with pytest.raises(InvalidStatusError):
+        task.status = "invalid_status"
 
-def test_task_source_protocol_runtime_checkable():
-
-    class GoodSource:
-        def get_tasks(self) -> Iterable[Task]:
-            yield Task("1", {})
-
-    class BadSource:
-        pass
-
-    good = GoodSource()
-    bad = BadSource()
-
-    assert isinstance(good, TaskSource) is True
-    assert isinstance(bad, TaskSource) is False
+def test_valid_status_change():
+    task = Task("T1", {}, 1, status="in_porgress")
+    task.status = "sent"
+    assert task.status == "sent"
