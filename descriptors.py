@@ -20,13 +20,6 @@ class PriorityDescriptor:
 
         setattr(instance, self.storage_name, value)
 
-        if not (self.min_priority <= value <= self.max_priority):
-            raise InvalidPriorityError(
-                f"Приоритет должен быть от {self.min_priority} до {self.max_priority}"
-            )
-
-        instance.__dict__[self.name] = value
-
 class AccessLogDescriptor:
     def __init__(self, message: str = "Accessing task attribute"):
         self.message = message

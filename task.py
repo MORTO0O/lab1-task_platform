@@ -11,10 +11,11 @@ class Task:
     def __init__(self, task_id: int, description: str, payload : Any, priority: int, status: str = "in_porgress") -> None:
         self._id = task_id
         self.payload = payload
-        self._priority = priority
+        self.priority = priority
         self._status = status
         self.description = description
         self.created_at = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+
     @property
     def id(self) -> int:
         return self._id
@@ -29,7 +30,7 @@ class Task:
 
     @status.setter
     def status(self, new_status: str) -> None:
-        valid_statuses = ["in_porgress", "ready", "sent"]
+        valid_statuses = ["in_progress", "ready", "sent"]
         if new_status not in valid_statuses:
             raise InvalidStatusError(f"Статус '{new_status}' недопустим. Доступные: {valid_statuses}")
         self._status = new_status
