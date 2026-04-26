@@ -4,6 +4,9 @@ from .sources.generator_source import GeneratorTaskSource
 from .sources.API_source import APITaskSource
 from .exceptions import TaskError
 from .queue import TaskQueue
+import asyncio
+from src.executor import AsyncExecutor
+from src.handlers import DefaultHandler
 
 if __name__ == '__main__':
     receiver = TaskReceiver()
@@ -26,5 +29,20 @@ if __name__ == '__main__':
     for task in high_priority:
         print(f"ВАЖНАЯ ЗАДАЧА: {task.id} Приоритет: {task.priority}")
 
+
+
+
     all_tasks_list = list(queue)
     print(f"\nВсего задач в очереди: {len(all_tasks_list)}")
+
+    async def run_async_system():
+        async with AsyncExecutor() as executor:
+            executor.register_handler("default", DefaultHandler())
+
+            print("Постановка задач в очередь...")
+            tasks_to_run = list(queue)[:5]
+
+            for task in tasks_to_run:
+                await executor.add_task(task)
+
+    asyncio.run(run_async_system())

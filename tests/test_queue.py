@@ -62,3 +62,17 @@ def test_filter_by_priority():
     assert len(high_priority) == 2
     assert high_priority[0].id == 2
     assert high_priority[1].id == 3
+
+def test_sum_compatibility():
+    q = TaskQueue()
+    q.add_task(Task(task_id=1, description="A", payload={}, priority=2, status="ready"))
+    q.add_task(Task(task_id=2, description="B", payload={}, priority=3, status="ready"))
+
+    total_priority = sum(task.priority for task in q)
+
+    assert total_priority == 5
+
+    q.add_task(Task(task_id=3, description="C", payload={}, priority=5, status="ready"))
+
+    high_priority_count = sum(1 for task in q if task.is_high_priority)
+    assert high_priority_count == 1
